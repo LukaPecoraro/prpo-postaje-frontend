@@ -1,0 +1,11 @@
+<h2>Postaje </h2>
+
+<ul class="seznami">
+    <li *ngFor="let postaja of postaje" (click)="naPodrobnosti(postaja)">
+        <span>{{postaja.lokacija}}</span>
+        <button class="delete"
+                (click)="delete(postaja); $event.stopPropagation()">x
+        </button>
+    </li>
+</ul>
+

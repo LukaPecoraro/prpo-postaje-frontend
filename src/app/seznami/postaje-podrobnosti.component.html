@@ -1,0 +1,26 @@
+<!--  KAKO TO DELA??S <div *ngIf="seznams"> -->
+
+    <h3>Postaja pri: {{postaja.lokacija}}</h3>
+
+
+    <p>Cena polnjenja: {{postaja.cenaPolnjenja }} c/kWh</p>
+    <p>Tip prikljucka na postaji: {{postaja.tipPrikljucka}}</p>
+
+    <!-- <p>Odprta: {{postaja.uraOdprtja | date: 'yyyy-mm-dd'}}</p> -->
+    <p>Postaja odpre: {{postaja.uraOdprtja}}</p>
+    <p>Postaja zapre: {{postaja.uraZaprtja}}</p>
+
+    <!-- <ul class="seznami">
+        <li *ngFor="let rezervacija of rezervacije">
+            <span>{{rezervacija.uraZacetka}} - {{rezervacija.uraKonca}}</span>
+        </li>
+    </ul> -->
+
+
+    <!-- <ul *ngFor="let artikel of seznam.artikli" class="artikli">
+        <li><b>{{artikel.naziv}}</b> <span *ngIf="artikel.opis"> &#8211; {{artikel.opis}}</span></li>
+    </ul> -->
+
+    <br>
+    <button (click)="dodajRezervacijo()">Dodaj Rezervacijo</button>
+    <button (click)="nazaj()">Nazaj</button>
