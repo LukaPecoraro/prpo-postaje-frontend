@@ -15,7 +15,7 @@ import { Postaja } from './models/postaja';
     selector: 'dodaj-artikel',
     templateUrl: 'rezervacija-dodaj.component.html'
 })
-export class ArtikelDodajComponent {
+export class RezervacijeDodajComponent {
 
     rezervacija: Rezervacija = new Rezervacija;
     postajaId: number;
@@ -41,13 +41,34 @@ export class ArtikelDodajComponent {
         this.sub.unsubscribe();
       }
 
-    // submitForm(): void {
-    //     this.rezervacijeService.create(this.seznamId, this.artikel)
-    //         .subscribe(() => this.router.navigate(['/seznami/' + this.seznamId]));
-    // }
+    submitForm(): void {
+        //popravi format da bo za backend uredi
+        //2022-03-13T08:00:00Z[UTC]
+        this.rezervacija.datumRezervacije = `${this.rezervacija.datumRezervacije}T00:00:00Z[UTC]`
+        this.rezervacija.idPostaja=this.postajaId
+        this.rezervacija.idUporabnik = 1 //hardcoded za demonstracijo
+        this.rezervacija.uraKonca = `1970-01-01T${this.rezervacija.uraKonca}:00Z[UTC]`
+        this.rezervacija.uraZacetka = `1970-01-01T${this.rezervacija.uraZacetka}:00Z[UTC]`
+
+        let rezFix = new Rezervacija()
+
+        rezFix.datumRezervacije = this.rezervacija.datumRezervacije
+        rezFix.idPostaja = this.rezervacija.idPostaja
+        rezFix.idUporabnik= this.rezervacija.idUporabnik 
+        rezFix.uraKonca= this.rezervacija.uraKonca
+        rezFix.uraZacetka= this.rezervacija.uraZacetka
+
+        //"{\"datumRezervacije\":\"2022-07-13T08:00:00Z[UTC]\",\"idPostaja\":2,\"idUporabnik\":1,\"uraKonca\":\"1970-01-01T12:00:00Z[UTC]\",\"uraZacetka\":\"1970-01-01T14:00:00Z[UTC]\"}
+        //{"datumRezervacije":"2022-01-15T00:00:00Z[UTC]","idPostaja":1,"idUporabnik":1,"uraKonca":"1970-01-01T06:06:00Z[UTC]","uraZacetka":"1970-01-01T05:05:00Z[UTC]"}
+
+
+        console.log(JSON.stringify(rezFix))
+        this.rezervacijeService.create(rezFix).subscribe()
+        
+    }
 
     nazaj(): void {
-        this.router.navigate(['/seznami']);
+        this.router.navigate(['/postaje/'+ this.postajaId]);
     }
 
 }

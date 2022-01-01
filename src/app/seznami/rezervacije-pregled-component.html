@@ -1,0 +1,13 @@
+
+
+    <b>Rezervirani termini:</b>
+    <ul>
+        <li *ngFor="let rez of rezervacije">
+            <span>{{rez.datumRezervacije}}: <b>{{rez.uraZacetka}} - {{rez.uraKonca}}</b></span>
+            <button (click)="delete(rez) ; $event.stopPropagation()">x</button>
+        </li>
+    </ul>
+
+    <br>
+
+    <button (click)="nazaj()">Nazaj</button>

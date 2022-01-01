@@ -14,6 +14,14 @@ import {SeznamiService} from './seznami/services/seznami.service';
 import { PostajeComponents } from './seznami/postaje.components';
 import { PostajeService } from './seznami/services/postaje.service';
 
+import { PostajePodrobnostiComponent } from './seznami/postaje-podrobnosti.component';
+import { RezervacijeService } from './seznami/services/rezervacije.service';
+import { OceneService } from './seznami/services/ocene.service';
+import { UporabnikiService } from './seznami/services/uporabniki.service';
+import { RezervacijeDodajComponent } from './seznami/rezervacija-dodaj.component';
+
+import { RezervacijePregledComponent } from './seznami/rezervacije-pregled-component';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -25,12 +33,15 @@ import { PostajeService } from './seznami/services/postaje.service';
         AppComponent,
         SeznamiComponent,
         SeznamPodrobnostiComponent,
-
+        
+        RezervacijeDodajComponent,
         PostajeComponents,
+        PostajePodrobnostiComponent,
+        RezervacijePregledComponent,
 
         ArtikelDodajComponent
     ],
-    providers: [SeznamiService, PostajeService],
+    providers: [SeznamiService, PostajeService, RezervacijeService, OceneService, UporabnikiService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

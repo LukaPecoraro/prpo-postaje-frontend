@@ -18,13 +18,10 @@ import { RezervacijeService } from './services/rezervacije.service';
 @Component({
     moduleId: module.id,
     selector: 'seznam-podrobnosti',
-    templateUrl: 'postaje-podrobnosti.component.html'
+    templateUrl: 'rezervacije-pregled-component.html'
 })
-export class PostajePodrobnostiComponent implements OnInit {
-    postaja: Postaja;
+export class RezervacijePregledComponent implements OnInit {
     rezervacije: Rezervacija[]
-    //idUporabnik: number
-    //ezervacijeUporabnik: Rezervacija[]
 
     constructor(private postajeService: PostajeService,
                 private rezervacijeService: RezervacijeService,
@@ -34,20 +31,12 @@ export class PostajePodrobnostiComponent implements OnInit {
     }
 
     ngOnInit(): void {
-       this.route.params.pipe(
-            switchMap((params: Params) => this.postajeService.getPostaja(+params['id'])))
-            .subscribe(postaja => this.postaja = postaja);
 
         // //rezervacije
         this.route.params.pipe(
-            switchMap((params: Params) => this.rezervacijeService.getRezervacijePostaja(+params['id'])))
+            switchMap((params: Params) => this.rezervacijeService.getRezervacijeUporabnik(+params['id']))) //naceloma kle params
             .subscribe(rezervacije => this.rezervacije = this.popraviUreRez(rezervacije));
         
-        //this.idUporabnik = 1 //hardcodamo za demo
-        // this.route.params.pipe(
-        //     switchMap((params: Params) => this.rezervacijeService.getRezervacijeUporabnik(1,+params['id'])))
-        //     .subscribe(rezervacijeUporabnik => this.rezervacijeUporabnik = this.popraviUreRez(rezervacijeUporabnik));
-
     }
 
     //naredi lepe ure in datume
@@ -78,10 +67,6 @@ export class PostajePodrobnostiComponent implements OnInit {
         return rezervacije
     }
 
-    dodajRezervacijo(): void {
-        this.router.navigate(['postaje/' + this.postaja.idPostaja + '/dodaj']);
-    }
-
     nazaj(): void {
         this.router.navigate(['postaje']);
     }
@@ -91,4 +76,15 @@ export class PostajePodrobnostiComponent implements OnInit {
     //         .delete(rez.idRezervacija)
     //         .subscribe(rezId => this.rezervacijeUporabnik = this.rezervacijeUporabnik.filter(s => s.idRezervacija !== rezId));
     // }
+
+    delete(rez: Rezervacija): void {
+
+        console.log(rez.idRezervacija)
+
+        this.rezervacijeService
+            .delete(rez.idRezervacija)
+            .subscribe(rezid => this.rezervacije = this.rezervacije.filter(s => s.idRezervacija !== rezid));
+    }
+
+
 }

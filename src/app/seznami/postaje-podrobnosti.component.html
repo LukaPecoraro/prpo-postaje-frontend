@@ -10,16 +10,28 @@
     <p>Postaja odpre: {{postaja.uraOdprtja}}</p>
     <p>Postaja zapre: {{postaja.uraZaprtja}}</p>
 
-    <!-- <ul class="seznami">
-        <li *ngFor="let rezervacija of rezervacije">
-            <span>{{rezervacija.uraZacetka}} - {{rezervacija.uraKonca}}</span>
-        </li>
-    </ul> -->
 
+    <b>Rezervirani termini:</b>
+    <ul>
+        <li *ngFor="let rez of rezervacije">
+            <span>{{rez.datumRezervacije}}: <b>{{rez.uraZacetka}} - {{rez.uraKonca}}</b></span>
+        </li>
+    </ul>
 
     <!-- <ul *ngFor="let artikel of seznam.artikli" class="artikli">
         <li><b>{{artikel.naziv}}</b> <span *ngIf="artikel.opis"> &#8211; {{artikel.opis}}</span></li>
     </ul> -->
+
+
+    <!-- <b>Termini uporabnika id</b>
+    <ul>
+        <li *ngFor="let rezu of rezervacijeUporabnik">
+            <span>{{rezu.datumRezervacije}}: <b>{{rezu.uraZacetka}} - {{rezu.uraKonca}}</b></span>
+            <button (click)="delete(rezu); $event.stopPropagation()">x</button>
+        </li>
+    </ul> -->
+
+
 
     <br>
     <button (click)="dodajRezervacijo()">Dodaj Rezervacijo</button>

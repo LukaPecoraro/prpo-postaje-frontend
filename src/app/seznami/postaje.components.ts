@@ -34,10 +34,9 @@ export class PostajeComponents implements OnInit {
         this.router.navigate(['/postaje', this.postaja.idPostaja]);
     }
 
-    delete(seznam: NakupovalniSeznam): void {
-        this.postajeService
-            .delete(seznam.id)
-            .subscribe(seznamId => this.postaje = this.postaje.filter(s => s.idPostaja !== seznamId));
+    pregledRezervacij(): void {
+        this.router.navigate(['rezervacije/' + 1]);
     }
+
 
 }

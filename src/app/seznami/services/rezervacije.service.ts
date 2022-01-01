@@ -33,7 +33,14 @@ export class RezervacijeService {
     getRezervacijePostaja(id: number): Observable<Rezervacija[]> {
         //http://localhost:8080/v1/rezervacije?filter=polnilnaPostaja.idPostaja:EQ:2
         const url = `${this.url}?filter=polnilnaPostaja.idPostaja:EQ:${id}`;
-        return this.http.get<Rezervacija[]>(this.url)
+        return this.http.get<Rezervacija[]>(url)
+                        .pipe(catchError(this.handleError));
+    }
+
+    getRezervacijeUporabnik(idU: number): Observable<Rezervacija[]> {
+        //http://localhost:8080/v1/rezervacije?filter=uporabnik.idUporabnik:EQ:1
+        const url = `${this.url}?filter=uporabnik.idUporabnik:EQ:${idU}`;
+        return this.http.get<Rezervacija[]>(url)
                         .pipe(catchError(this.handleError));
     }
 
@@ -43,13 +50,12 @@ export class RezervacijeService {
                         .pipe(catchError(this.handleError));
     }
 
-    //{\"datumRezervacije\":\"2022-02-01T08:00:00Z[UTC]\",\"idPostaja\":1,\"idUporabnik\":1,\"uraKonca\":\"1970-01-01T08:00:00Z[UTC]\",\"uraZacetka\":\"1970-01-01T20:03:00Z[UTC]\"}
 
-    //TODO POST
-    // create(seznamId: number, artikel: Artikel): Observable<Artikel> {
-    //     return this.http.post<Rezervacija>(this.url + '/' + seznamId + '/artikli', JSON.stringify(artikel), {headers: this.headers})
-    //                     .pipe(catchError(this.handleError));
-    // }
+
+    create(rezervacija: Rezervacija): Observable<Rezervacija> {
+        let novaRez = this.http.post<Rezervacija>(this.url, JSON.stringify(rezervacija), {headers: this.headers}).pipe(catchError(this.handleError));
+        return novaRez
+    }
 
     private handleError(error: any): Promise<any> {
         console.error('Prišlo je do napake', error);

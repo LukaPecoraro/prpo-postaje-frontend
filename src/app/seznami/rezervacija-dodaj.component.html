@@ -1,19 +1,37 @@
-<h2>Dodaj artikel</h2>
-<div *ngIf="artikel">
-    <form (ngSubmit)="submitForm()" ngNativeValidate>
-        <table>
-            <tr>
-                <td><label for="naziv">Naziv</label></td>
-                <td><input [(ngModel)]="artikel.naziv" id="naziv" name="naziv" required /></td>
-            </tr>
-            <tr>
-                <td><label for="opis">Opis</label></td>
-                <td><input [(ngModel)]="artikel.opis" id="opis" name="opis" /></td>
-            </tr>
-        </table>
+<h2>Naredi novo rezervacijo</h2>
 
-        <br/>
-        <button type="button" (click)="nazaj()">Nazaj</button>
-        <button type="submit">Dodaj</button>
-    </form>
-</div>
+<!-- <div *ngIf="artikel"> -->
+<form (ngSubmit)="submitForm()" ngNativeValidate>
+    <table>
+        <!-- <tr>
+            <td><label for="naziv">Naziv</label></td>
+            <td><input [(ngModel)]="artikel.naziv" id="naziv" name="naziv" required /></td>
+        </tr>
+        <tr>
+            <td><label for="opis">Opis</label></td>
+            <td><input [(ngModel)]="artikel.opis" id="opis" name="opis" /></td>
+        </tr> -->
+
+        <tr>
+            <td><label for="datumRezervacije">Datum rezervacije</label></td>
+            <td><input type="date"  [(ngModel)]="rezervacija.datumRezervacije" id="datumRezervacije" name="datumRezervacije" required ></td>
+        </tr>
+        <tr>
+            <td><label for="uraZacetka">Ura zacetka</label></td>
+            <td><input type="time"  [(ngModel)]="rezervacija.uraZacetka" id="uraZacetka" name="uraZacetka" required ></td>
+        </tr>
+        <tr>
+            <td><label for="uraKonca">Ura konca</label></td>
+            <td><input type="time"  [(ngModel)]="rezervacija.uraKonca" id="uraKonca" name="uraKonca" required ></td>
+        </tr>
+
+
+    </table>
+
+    <br/>
+    <button type="button" (click)="nazaj()">Nazaj</button>
+    <button type="submit">Dodaj</button>
+</form>
+<!-- </div> -->
+
+<p>{{rezervacija.datumRezervacije}}</p>
