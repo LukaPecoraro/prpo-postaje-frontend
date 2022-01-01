@@ -83,7 +83,7 @@ export class RezervacijePregledComponent implements OnInit {
 
         this.rezervacijeService
             .delete(rez.idRezervacija)
-            .subscribe(rezid => this.rezervacije = this.rezervacije.filter(s => s.idRezervacija !== rezid));
+            .subscribe(rezid => this.rezervacije = this.rezervacije.filter(s => s.idRezervacija !== rez.idRezervacija));
     }
 
 
